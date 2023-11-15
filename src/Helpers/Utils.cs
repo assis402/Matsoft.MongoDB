@@ -1,3 +1,5 @@
+using Matsoft.MongoDB.CustomAttributes;
+
 namespace Matsoft.MongoDB.Helpers;
 
 public static class Utils

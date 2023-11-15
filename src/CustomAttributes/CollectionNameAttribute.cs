@@ -1,4 +1,4 @@
-namespace Matsoft.MongoDB.Helpers;
+namespace Matsoft.MongoDB.CustomAttributes;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class CollectionNameAttribute : Attribute 

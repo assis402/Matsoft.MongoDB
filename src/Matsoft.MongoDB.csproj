@@ -4,6 +4,12 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Matsoft.MongoDB</Title>
+        <Authors>Matheus de Assis</Authors>
+        <Description>A simple package to facilitate the implementation of MongoDB databases in the Repository design pattern.</Description>
+        <RepositoryUrl>https://github.com/assis402/Matsoft.MongoDB</RepositoryUrl>
+        <PackageTags>MongoDB, Repository, Database</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
