@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Matsoft.MongoDB.Helpers;
+using MongoDB.Driver;
 
 namespace Matsoft.MongoDB;
 
@@ -6,10 +7,8 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 {
     private readonly IMongoCollection<TEntity> _entityCollection;
 
-    protected BaseRepository(UserAccessContextDb context)
-    {
-        _entityCollection = context.Database.GetCollection<TEntity>(Utils.GetCollectionName<TEntity>());
-    }
+    protected BaseRepository(BaseContextDb context) 
+        => _entityCollection = context.Database.GetCollection<TEntity>(Utils.GetCollectionName<TEntity>());
 
     public async Task InsertOneAsync(TEntity user)
         => await _entityCollection.InsertOneAsync(user);
@@ -35,21 +34,21 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     public async Task UpdateOneAsync(TEntity entity,
         UpdateDefinition<TEntity> updateDefinition)
     {
-        updateDefinition = BaseEntity.SetUpdateDate(updateDefinition);
+        updateDefinition = entity.SetUpdateDateAndGetDefinition(updateDefinition);
         await _entityCollection.UpdateOneAsync(entity.FindByIdDefinition<TEntity>(), updateDefinition);
     }
 
     public async Task UpdateOneAsync(string id,
         UpdateDefinition<TEntity> updateDefinition)
     {
-        updateDefinition = BaseEntity.SetUpdateDate(updateDefinition);
+        updateDefinition = BaseEntity.UpdateDateDefinition(updateDefinition);
         await _entityCollection.UpdateOneAsync(BaseEntity.FindByIdDefinition<TEntity>(id), updateDefinition);
     }
 
     public async Task UpdateOneAsync(FilterDefinition<TEntity> filterDefinition,
         UpdateDefinition<TEntity> updateDefinition)
     {
-        updateDefinition = BaseEntity.SetUpdateDate(updateDefinition);
+        updateDefinition = BaseEntity.UpdateDateDefinition(updateDefinition);
         await _entityCollection.UpdateOneAsync(filterDefinition, updateDefinition);
     }
 

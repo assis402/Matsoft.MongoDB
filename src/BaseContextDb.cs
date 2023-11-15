@@ -1,8 +1,4 @@
-using ApiResults.Helpers;
-using Materialize.UserAccess.Business.Entities;
-using Materialize.UserAccess.Business.Enums.Messages;
-using Materialize.UserAccess.Shared.Environment;
-using MongoDB.Bson.Serialization;
+using System;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 

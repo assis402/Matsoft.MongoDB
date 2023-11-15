@@ -1,4 +1,6 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using Matsoft.MongoDB.Helpers;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 
@@ -31,11 +33,14 @@ public abstract class BaseEntity
         return Builders<TEntity>.Filter.Eq("_id", ObjectId.Parse(id));
     }
 
-    public UpdateDefinition<TEntity> SetUpdateDateDefinition<TEntity>(UpdateDefinition<TEntity> definition)
+    public UpdateDefinition<TEntity> SetUpdateDateAndGetDefinition<TEntity>(UpdateDefinition<TEntity> definition)
     {
         UpdateDate = DateTime.UtcNow;
         return definition.Set(nameof(UpdateDate).FirstCharToLowerCase(), UpdateDate);
     }
+    
+    public static UpdateDefinition<TEntity> UpdateDateDefinition<TEntity>(UpdateDefinition<TEntity> definition) 
+        => definition.Set(nameof(UpdateDate).FirstCharToLowerCase(), DateTime.UtcNow);
 
     #endregion
 }
