@@ -10,6 +10,7 @@
         <Description>A simple package to facilitate the implementation of MongoDB databases in the Repository design pattern.</Description>
         <RepositoryUrl>https://github.com/assis402/Matsoft.MongoDB</RepositoryUrl>
         <PackageTags>MongoDB, Repository, Database</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
