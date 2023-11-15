@@ -1,0 +1,8 @@
+{
+	"descriptionDictonary": {
+		"PT_BR": "Biblioteca para facilitar a implementação de bancos de dados em MongoDB",
+		"EN_US": "Library to facilitate the implementation of MongoDB databases"
+	},
+	"tags": ["Backend", ".NET 7", "NuGet Package", "MongoDB"],
+	"nuGetUrl": "https://www.nuget.org/packages/Matsoft.MongoDB"
+}
