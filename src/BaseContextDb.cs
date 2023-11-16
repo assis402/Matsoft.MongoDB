@@ -1,4 +1,5 @@
 using System;
+using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 
@@ -28,6 +29,15 @@ public abstract class BaseContextDb
     {
         var conventionPack = new ConventionPack { new CamelCaseElementNameConvention() };
         ConventionRegistry.Register("camelCase", conventionPack, _ => true);
+    }
+
+    protected void RegisterMap<TEntity>() where TEntity : BaseEntity
+    {
+        BsonClassMap.RegisterClassMap<TEntity>(i =>
+        {
+            i.AutoMap();
+            i.SetIgnoreExtraElements(true);
+        });
     }
 
     protected abstract void MapClasses();
