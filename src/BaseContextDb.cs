@@ -15,17 +15,20 @@ public abstract class BaseContextDb
             var settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString));
             var client = new MongoClient(settings);
             Database = client.GetDatabase(databaseName);
+            SetCamelCaseNameConvention();
             MapClasses();
         }
         catch (Exception ex)
         {
-            throw new MongoException("Não foi possível estabelecer a conexão ao banco de dados", ex);
+            throw new MongoException("Unable to connect to the database", ex);
         }
     }
 
-    protected void MapClasses()
+    private void SetCamelCaseNameConvention()
     {
         var conventionPack = new ConventionPack { new CamelCaseElementNameConvention() };
         ConventionRegistry.Register("camelCase", conventionPack, _ => true);
     }
+
+    protected abstract void MapClasses();
 }
