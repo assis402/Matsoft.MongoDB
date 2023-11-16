@@ -12,6 +12,7 @@
         <PackageTags>MongoDB, Repository, Database</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
