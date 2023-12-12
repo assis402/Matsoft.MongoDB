@@ -6,6 +6,8 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
 {
     public Task InsertOneAsync(TEntity user);
 
+    public Task<TEntity> FindByIdAsync(string id);
+    
     public Task<IEnumerable<TEntity>> FindAsync(FilterDefinition<TEntity> filterDefinition);
 
     public Task<TEntity> FindOneAsync(FilterDefinition<TEntity> filterDefinition);

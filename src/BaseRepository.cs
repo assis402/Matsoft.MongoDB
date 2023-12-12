@@ -7,12 +7,18 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 {
     private readonly IMongoCollection<TEntity> _entityCollection;
 
-    protected BaseRepository(BaseContextDb context) 
+    protected BaseRepository(BaseContextDb context)
         => _entityCollection = context.Database.GetCollection<TEntity>(Utils.GetCollectionName<TEntity>());
 
     public async Task InsertOneAsync(TEntity user)
         => await _entityCollection.InsertOneAsync(user);
-
+    
+    public async Task<TEntity> FindByIdAsync(string id)
+    {
+        var filter = BaseEntity.FindByIdDefinition<TEntity>(id);
+        return await FindOneAsync(filter); 
+    }
+    
     public async Task<IEnumerable<TEntity>> FindAsync(FilterDefinition<TEntity> filterDefinition)
     {
         var result = await _entityCollection.FindAsync(filterDefinition);
