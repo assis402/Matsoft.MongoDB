@@ -8,7 +8,7 @@ namespace Matsoft.MongoDB;
 public abstract class BaseContextDb
 {
     public IMongoDatabase Database { get; }
-    public MongoClient Client { get; }
+    public IMongoClient Client { get; }
     
     protected BaseContextDb(string connectionString, string databaseName)
     {
