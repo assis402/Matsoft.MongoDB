@@ -8,14 +8,15 @@ namespace Matsoft.MongoDB;
 public abstract class BaseContextDb
 {
     public IMongoDatabase Database { get; }
-
+    public MongoClient Client { get; }
+    
     protected BaseContextDb(string connectionString, string databaseName)
     {
         try
         {
             var settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString));
-            var client = new MongoClient(settings);
-            Database = client.GetDatabase(databaseName);
+            Client = new MongoClient(settings);
+            Database = Client.GetDatabase(databaseName);
             SetCamelCaseNameConvention();
             MapClasses();
         }
