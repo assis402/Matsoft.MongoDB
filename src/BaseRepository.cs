@@ -10,8 +10,14 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     protected BaseRepository(BaseContextDb context)
         => _entityCollection = context.Database.GetCollection<TEntity>(Utils.GetCollectionName<TEntity>());
 
-    public async Task InsertOneAsync(TEntity user)
-        => await _entityCollection.InsertOneAsync(user);
+    public async Task InsertOneAsync(TEntity entity)
+        => await _entityCollection.InsertOneAsync(entity);
+    
+    public async Task InsertManyAsync(IEnumerable<TEntity> entityList)
+        => await _entityCollection.InsertManyAsync(entityList);
+    
+    public async Task InsertManyAsync(params TEntity[] entityList)
+        => await _entityCollection.InsertManyAsync(entityList);
     
     public async Task<TEntity> FindByIdAsync(string id)
     {

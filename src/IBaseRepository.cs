@@ -4,8 +4,12 @@ namespace Matsoft.MongoDB;
 
 public interface IBaseRepository<TEntity> where TEntity : BaseEntity
 {
-    public Task InsertOneAsync(TEntity user);
-
+    public Task InsertOneAsync(TEntity entity);
+    
+    public Task InsertManyAsync(IEnumerable<TEntity> entityList);
+    
+    public Task InsertManyAsync(params TEntity[] entityList);
+    
     public Task<TEntity> FindByIdAsync(string id);
     
     public Task<IEnumerable<TEntity>> FindAsync(FilterDefinition<TEntity> filterDefinition);
