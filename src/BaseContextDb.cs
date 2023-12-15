@@ -7,8 +7,9 @@ namespace Matsoft.MongoDB;
 
 public abstract class BaseContextDb
 {
-    public IMongoDatabase Database { get; }
-    public IMongoClient Client { get; }
+    public BaseContextDb()
+    {
+    }
     
     protected BaseContextDb(string connectionString, string databaseName)
     {
@@ -25,6 +26,10 @@ public abstract class BaseContextDb
             throw new MongoException("Unable to connect to the database", ex);
         }
     }
+    
+    public IMongoDatabase Database { get; }
+    public IMongoClient Client { get; }
+    
 
     private void SetCamelCaseNameConvention()
     {
