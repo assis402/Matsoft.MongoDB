@@ -8,7 +8,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     private readonly IMongoCollection<TEntity> _entityCollection;
 
     protected BaseRepository(BaseContextDb context)
-        => _entityCollection = context.Database.GetCollection<TEntity>(name: Utils.GetCollectionName<TEntity>());
+        => _entityCollection = context?.Database?.GetCollection<TEntity>(name: Utils.GetCollectionName<TEntity>());
     
     public async Task InsertOneAsync(TEntity entity)
         => await _entityCollection.InsertOneAsync(document: entity);
