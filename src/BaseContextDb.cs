@@ -7,12 +7,10 @@ namespace Matsoft.MongoDB;
 
 public abstract class BaseContextDb
 {
-    public BaseContextDb()
+    protected BaseContextDb(string connectionString, string databaseName, bool isTestProject = false)
     {
-    }
-    
-    protected BaseContextDb(string connectionString, string databaseName)
-    {
+        if (isTestProject) return;
+        
         try
         {
             var settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString));
