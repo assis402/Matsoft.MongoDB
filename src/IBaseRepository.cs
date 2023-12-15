@@ -6,7 +6,7 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
 {
     public Task InsertOneAsync(TEntity entity, IClientSessionHandle session = null);
     
-    public Task InsertManyAsync(IEnumerable<TEntity> entityList, IClientSessionHandle session = null);
+    public Task InsertAsync(IEnumerable<TEntity> entityList, IClientSessionHandle session = null);
     
     public Task InsertManyAsync(IClientSessionHandle session = null, params TEntity[] entityList);
     

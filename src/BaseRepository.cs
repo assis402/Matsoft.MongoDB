@@ -13,7 +13,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     public virtual async Task InsertOneAsync(TEntity entity, IClientSessionHandle session = null)
         => await _entityCollection.InsertOneAsync(document: entity, session: session);
     
-    public virtual async Task InsertManyAsync(IEnumerable<TEntity> entityList, IClientSessionHandle session = null)
+    public virtual async Task InsertAsync(IEnumerable<TEntity> entityList, IClientSessionHandle session = null)
         => await _entityCollection.InsertManyAsync(documents: entityList, session: session);
     
     public virtual async Task InsertManyAsync(IClientSessionHandle session = null, params TEntity[] entityList)
